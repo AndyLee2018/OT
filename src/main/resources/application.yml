@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://1.116.90.93:3306/tkpi
+  redis:
+    host: 1.116.90.93
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 500
+        min-idle: 0
+    lettuce:
+      shutdown-timeout: 0
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+redis:
