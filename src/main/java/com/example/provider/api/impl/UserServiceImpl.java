@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService {
     public String getUserInfo(Long id) {
         ArrayList<Object> list = new ArrayList<>();
         int i  = 0;
-        while (i < id){
+        while (true){
             list.add(new String());
             i++;
         }
-        return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
+        //return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
     }
 
     public void insertUserInfo() {
