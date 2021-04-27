@@ -9,6 +9,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -21,6 +23,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getUserInfo(Long id) {
+        ArrayList<Object> list = new ArrayList<>();
+        int i  = 0;
+        while (i < id){
+            list.add(new String());
+        }
         return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
     }
 
