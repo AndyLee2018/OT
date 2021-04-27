@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
         int i  = 0;
         while (i < id){
             list.add(new String());
+            i++;
         }
         return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
     }
