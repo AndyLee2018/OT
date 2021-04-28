@@ -20,29 +20,28 @@ public class UserServiceImpl implements UserService {
     JdbcTemplate jdbcTemplate;
     @Autowired
     UserinfoMapper userinfoMapper;
-    @Autowired
-    private RedisTemplate<String,String> redisTemplate;
 
-    public static final Integer num = 0;
+    public static Integer num = 0;
 
     public static AtomicLong increase = new AtomicLong(0);
 
+    @Autowired
+    public void label(RedisTemplate<String,String> redisTemplate){
+        if(redisTemplate.opsForValue().get("num") != null){
+            increase = new AtomicLong(Integer.valueOf(redisTemplate.opsForValue().get("num")));
+        }
+    }
+
     @Override
     public String getUserInfo(Long id) {
-        String num1 = redisTemplate.opsForValue().get("num");
-        if(num1 == null){
-            redisTemplate.opsForValue().set("num",num+"");
-        }else{
-            redisTemplate.opsForValue().set("num",Integer.valueOf(num1)+1+"");
-        }
         ArrayList<Object> list = new ArrayList<>();
         int i  = 0;
-        while (i < Integer.valueOf(num1)){
+        while (i < increase.intValue()){
             list.add(new String());
             i++;
         }
-        System.out.println(num1);
-        return JSON.toJSONString(num1);
+        System.out.println(increase);
+        return JSON.toJSONString(increase);
     }
 
     public void insertUserInfo() {
