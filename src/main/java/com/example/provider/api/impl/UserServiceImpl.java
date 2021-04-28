@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,15 +22,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
+    public static AtomicLong increase = new AtomicLong(0);
+
     @Override
     public String getUserInfo(Long id) {
         ArrayList<Object> list = new ArrayList<>();
+        long num = increase.incrementAndGet();
         int i  = 0;
-        while (i < id){
+        while (i < num){
             list.add(new String());
             i++;
         }
-        return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
+        System.out.println(num);
+        return JSON.toJSONString(num);
     }
 
     public void insertUserInfo() {
