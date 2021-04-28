@@ -18,4 +18,5 @@ spring:
       shutdown-timeout: 0
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
-redis:
+logging:
+  config: classpath:logback-spring.xml
