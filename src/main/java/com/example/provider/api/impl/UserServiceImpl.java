@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.provider.api.UserService;
 import com.example.provider.dao.UserinfoMapper;
+import com.example.provider.dbmanager.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,12 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static com.example.provider.dbmanager.DataSource.SOURCE_A;
+import static com.example.provider.dbmanager.DataSource.SOURCE_B;
+
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
     @Autowired
     UserinfoMapper userinfoMapper;
 
@@ -35,20 +37,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @DataSource(SOURCE_A)
     public String getUserInfo(Long id) {
-        ArrayList<Object> list = new ArrayList<>();
-        int i  = 0;
-        while (i < increase.intValue()){
-            list.add(new String());
-            i++;
-            log.info("自增编号：{}",i++);
-        }
-        log.info("编号：{}",increase);
-        return JSON.toJSONString(increase);
+        return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
     }
 
-    public void insertUserInfo() {
-        jdbcTemplate.update("insert into users values(null,?,?)","dd",25);
+    @Override
+    @DataSource(SOURCE_B)
+    public String getUserInfo2(Long id) {
+        return JSON.toJSONString(userinfoMapper.selectByPrimaryKey(id));
     }
 
 }

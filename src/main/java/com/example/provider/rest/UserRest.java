@@ -28,4 +28,13 @@ public class UserRest {
         JSONObject info = JSON.parseObject(param);
         return userService.getUserInfo(info.getLong("id"));
     }
+
+    @Path("test2")
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String test2(String param){
+        JSONObject info = JSON.parseObject(param);
+        return userService.getUserInfo2(info.getLong("id"));
+    }
 }

@@ -5,11 +5,11 @@ spring:
     a:
       username: root
       password: 123456
-      url: jdbc:mysql://1.116.90.93:3306/tkpi
+      jdbc-url: jdbc:mysql://1.116.90.93:3306/tkpi
     b:
       username: root
       password: 123456
-      url: jdbc:mysql://1.116.90.93:3306/tkpi
+      jdbc-url: jdbc:mysql://1.116.90.93:3307/tkpi
   redis:
     host: 1.116.90.93
     port: 6379
