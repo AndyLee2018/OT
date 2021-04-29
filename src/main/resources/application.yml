@@ -2,9 +2,14 @@ server:
   port: 8081
 spring:
   datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://1.116.90.93:3306/tkpi
+    a:
+      username: root
+      password: 123456
+      url: jdbc:mysql://1.116.90.93:3306/tkpi
+    b:
+      username: root
+      password: 123456
+      url: jdbc:mysql://1.116.90.93:3306/tkpi
   redis:
     host: 1.116.90.93
     port: 6379
